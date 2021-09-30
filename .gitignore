@@ -1,3 +1,5 @@
 .idea/
 /venv
-/__pcache__
+/__pycache__
+/first_part
+/second_part
