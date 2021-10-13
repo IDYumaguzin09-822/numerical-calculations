@@ -23,7 +23,7 @@ def a_i_func(i, h):
     return (p_func(i * h - h) + p_func(i * h)) / 2
 
 
-def get_matrix(n, mu1, mu4):
+def get_matrix(n, mu1=0, mu4=5):
     h = 1 / n
     main_diag, down_diag, upper_diag, b = np.array([]), np.array([]), np.array([]), np.array([])
     for i in range(1, n):
@@ -81,8 +81,8 @@ def main():
     mu1 = 0
     mu4 = 5
 
-    # A, b = get_matrix(n, mu1, mu4)
-    A = create_random_matrix(50)
+    A, b = get_matrix(n, mu1, mu4)
+    # A = create_random_matrix(50)
     x, b = test(A)
     seidel(A, b, 1000, eps)
     print("-" * 30)
@@ -92,6 +92,9 @@ def main():
         print("-" * 30)
         print(t)
         over_relaxation(A, b, t, 1000, eps)
+
+    from residual_method import residual_method
+    residual_method(A, b, eps, 1000)
 
 
 if __name__ == '__main__':
